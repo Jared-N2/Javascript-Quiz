@@ -15,7 +15,7 @@ var questions = [
 function askquestion() {
     var currentQuestion = questions[index]
     var html = html.text(currentQuestion.question)
-    for (var i = 0; i < questions[index].choices) {
+    for (var i = 0; i < questions[index].choices;) {
       var button = questions[index].choices[i]
       button.setAttribute('value', questions[index].choices[i])
     }

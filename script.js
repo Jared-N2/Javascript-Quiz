@@ -3,58 +3,116 @@
 // make a start button
 var timer = document.getElementById('timer');
 var questionBox = document.getElementById('qBox');
+var question1 = document.querySelector("#Q1")
+var button0 = document.querySelector('#button0')
+var button1 = document.querySelector('#button1')
+var button2 = document.querySelector('#button2')
+var button3 = document.querySelector('#button3')
+var timeLeft = 60
 var index = 0
 var questions = [
     {
-         question: "What is NOT a type of input Data ",
-         answers: ["Number", "String", "Boolean", "French Fries"],
-         correct: "French Fries"
-         }, 
+        question: "What is NOT a type of input Data ",
+        answers: ["Number", "String", "Boolean", "French Fries"],
+        correct: "French Fries"
+    },
     {
         question: "How do you link JavaScript on our page?",
-        answers: ["<link>", "<src script=>", "<script src=", "<html src=>"],
-        correct: "<script src=>"
-         },
+        answers: ["link", "src script=", "script src=", "html src="],
+        correct: "script src=" 
+    },
 
     {
         question: "Which are style's of CSS?",
-        answers: ["background-color","flex","padding","all of the above"],
+        answers: ["background-color", "flex", "padding", "all of the above"],
         correct: "all of the above"
-         },
-    
+    },
+
     {
         question: "What is NOT an arithmic operator is js?",
-        answers: ["/","*","--","+++"],
+        answers: ["/", "*", "--", "+++"],
         correct: "+++"
-       } 
-]    
-
+    }
+]
 var startBtn = document.getElementById("start")
 startBtn.addEventListener('click', function () {
     start()
 })
 
 function start() {
-    // startBtn.classList.add("hide");
+    startBtn.classList.add("hide");
     timer.classList.remove('hide');
-    // questionBox.classList.remove('hide')
+    questionBox.classList.remove('hide')
 
 
-    document.getElementById("Question1").innerHTML = questions[0].question
-    document.getElementById("button0").innerHTML = questions[0].answers[0]
-    document.getElementById("button1").innerHTML = questions[0].answers[1]
-    document.getElementById("button2").innerHTML = questions[0].answers[2]
-    document.getElementById("button3").innerHTML = questions[0].answers[3]
+    question1.innerHTML = questions[index].question
+    button0.innerHTML = questions[index].answers[0]
+    button1.innerHTML = questions[index].answers[1]
+    button2.innerHTML = questions[index].answers[2]
+    button3.innerHTML = questions[index].answers[3]
 
+    index = index += 1
     
-    var timeLeft = 60
 
-    setInterval(function() {
+    setInterval(function () {
         timer.innerHTML = timeLeft
         timeLeft--
 
     }, 1000)
 }
+
+function nextQuestion() {
+
+    question1.innerHTML = questions[index].question
+    button0.innerHTML = questions[index].answers[0]
+    button1.innerHTML = questions[index].answers[1]
+    button2.innerHTML = questions[index].answers[2]
+    button3.innerHTML = questions[index].answers[3]
+
+    
+}
+
+button0.addEventListener('click', function () {
+    if (button0.innerHTML === questions[index].correct) {
+        //score ++
+    } else {
+        timeLeft = timeLeft -= 10
+    }
+    
+    index = index += 1
+    nextQuestion()
+})
+button1.addEventListener('click', function () {
+    if (button1.innerHTML === questions[index].correct) {
+        //score ++
+    } else {
+        timeLeft = timeLeft -= 10
+    }
+    
+    index = index += 1
+    nextQuestion()
+})
+button2.addEventListener('click', function () {
+    if (button2.innerHTML === questions[index].correct) {
+        //score ++
+    } else {
+        timeLeft = timeLeft -= 10
+    }
+    
+
+    index = index += 1
+    nextQuestion()
+})
+button3.addEventListener('click', function () {
+    if (button3.innerHTML === questions[index].correct) {
+        //score ++
+    } else {
+        timeLeft = timeLeft -= 10
+    }
+    
+    index = index += 1
+    nextQuestion()
+})
 
 // if correct !(button == wrong){
 //     timeLeft = timeleft -= 10
