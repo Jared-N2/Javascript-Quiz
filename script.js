@@ -9,6 +9,7 @@ var button1 = document.querySelector('#button1')
 var button2 = document.querySelector('#button2')
 var button3 = document.querySelector('#button3')
 var timeLeft = 60
+var highScore = document.querySelector('#scores')
 var index = 0
 var questions = [
     {
@@ -80,7 +81,11 @@ button0.addEventListener('click', function () {
     }
     
     index = index += 1
-    nextQuestion()
+    if (index===questions.length) {
+        endQuiz() 
+    } else {
+        nextQuestion()
+    }
 })
 button1.addEventListener('click', function () {
     if (button1.innerHTML === questions[index].correct) {
@@ -90,7 +95,11 @@ button1.addEventListener('click', function () {
     }
     
     index = index += 1
-    nextQuestion()
+    if (index===questions.length) {
+        endQuiz() 
+    } else {
+        nextQuestion()
+    }
 })
 button2.addEventListener('click', function () {
     if (button2.innerHTML === questions[index].correct) {
@@ -101,7 +110,11 @@ button2.addEventListener('click', function () {
     
 
     index = index += 1
-    nextQuestion()
+    if (index===questions.length) {
+        endQuiz() 
+    } else {
+        nextQuestion()
+    }
 })
 button3.addEventListener('click', function () {
     if (button3.innerHTML === questions[index].correct) {
@@ -111,8 +124,27 @@ button3.addEventListener('click', function () {
     }
     
     index = index += 1
-    nextQuestion()
+    if (index===questions.length) {
+        endQuiz() 
+    } else {
+        nextQuestion()
+    }
 })
+
+function saving() {
+    var name = document.querySelector('#initials').value
+    var scores = JSON.parse(localStorage.getItem('scores')) || []
+    var newScore = {
+      name: name,
+      score: timeLeft
+    }
+    scores.push(newScore)
+    localStorage.setItem('scores', JSON.stringify(scores))
+  }
+
+
+
+
 
 // if correct !(button == wrong){
 //     timeLeft = timeleft -= 10
